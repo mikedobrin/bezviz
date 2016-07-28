@@ -2,17 +2,81 @@
 <!DOCTYPE html>
 <html>
 <head lang="uk">
-    <title>Коли ж нам нарешті дадуть безвіз?</title>
-    <meta charset="UTF-8">
+	<title>Коли ж нам нарешті дадуть безвіз?</title>
+	<meta charset="UTF-8">
 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 
 </head>
 <body>
-	Hello world
+
+	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script>
+		$(function () {
+
+			$('#container').highcharts({
+
+				chart: {
+					type: 'columnrange',
+					inverted: true
+				},
+
+				title: {
+					text: 'Temperature variation by month'
+				},
+
+				subtitle: {
+					text: 'Observed in Vik i Sogn, Norway'
+				},
+
+				xAxis: {
+					categories: ["Сербія, Чорногорія, Македонія", "Албанія, Боснія та Герцеговина", "Молдова", "Грузія", "Україна", "Косово"]
+				},
+
+				yAxis: {
+					type: 'datetime',
+					minTickInterval: 31 * 24 * 36e5,
+					title: {
+						text: 'Temperature ( °C )'
+					}
+				},
+
+				tooltip: {
+					valueSuffix: '°C'
+				},
+
+				plotOptions: {
+					columnrange: {
+							stacking: 'normal',
+						dataLabels: {
+							enabled: true,
+							formatter: function () {
+								return this.y + '°C';
+							}
+						}
+					}
+				},
+
+				legend: {
+					enabled: false
+				},
+
+				series: [{
+					name: 'Temperatures',
+					data: [
+						[1258239600000, 1261090800000]
+					]
+				}]
+			});
+		});
+	</script>
 </body>
 </html>
