@@ -1,5 +1,19 @@
 $(function () {
 
+	var seriesDataSMM = ["15/07/2009", "18/12/2009"];
+	var seriesDataAB = ["27/05/2010", "14/12/2010"];
+
+	function getTimeStampByDateString(dateString) {
+		var date = new Date();
+		var parsedString = dateString.split("/");
+		date.setFullYear(parsedString[2], parsedString[1] - 1, parsedString[0]);
+		return date.getTime();
+	}
+
+	function generateSeriesData(dateStrings) {
+		return dateStrings.map(getTimeStampByDateString);
+	}
+
 	$('#container').highcharts({
 
 		chart: {
@@ -16,15 +30,19 @@ $(function () {
 		},
 
 		xAxis: {
-			categories: ["Сербія, Чорногорія, Македонія", "Албанія, Боснія та Герцеговина", "Молдова", "Грузія", "Україна", "Косово"]
+			categories: [
+				"Сербія, Чорногорія, Македонія",
+				"Албанія, Боснія та Герцеговина",
+				"Молдова",
+				"Грузія",
+				"Україна",
+				"Косово"
+			]
 		},
 
 		yAxis: {
 			type: 'datetime',
 			minTickInterval: 31 * 24 * 36e5,
-			title: {
-				text: 'Temperature ( °C )'
-			}
 		},
 
 		tooltip: {
@@ -33,11 +51,12 @@ $(function () {
 
 		plotOptions: {
 			columnrange: {
-					stacking: 'normal',
+				stacking: 'normal',
 				dataLabels: {
 					enabled: true,
 					formatter: function () {
-						return this.y + '°C';
+						var date = new Date(this.y);
+						return date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 					}
 				}
 			}
@@ -48,9 +67,10 @@ $(function () {
 		},
 
 		series: [{
-			name: 'Temperatures',
+			name: 'Час розгляду',
 			data: [
-				[1258239600000, 1261090800000]
+				generateSeriesData(seriesDataSMM),
+				generateSeriesData(seriesDataAB)
 			]
 		}]
 	});
