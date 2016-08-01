@@ -12,32 +12,39 @@ $(function () {
 // 18/12/2009	Final act published in Official Journal
 
 // 27/05/2010	Legislative proposal published	COM(2010)0256 Eur-Lex link	Summary
+1
 // 15/06/2010	Committee referral announced in Parliament, 1st reading/single reading
+2
 // 28/09/2010	Vote in committee, 1st reading/single reading	 	Summary
+3
 // 30/09/2010	Committee report tabled for plenary, 1st reading/single reading	A7-0256/2010
+4
 // 06/10/2010	Debate in Parliament
+5
 // 07/10/2010	Results of vote in Parliament
 // 07/10/2010	Decision by Parliament, 1st reading/single reading	T7-0349/2010	Summary
+6
 // 08/11/2010	Act adopted by Council after Parliament's 1st reading
 // 24/11/2010	Final act signed
 // 24/11/2010	End of procedure in Parliament
 // 14/12/2010	Final act published in Official Journal
 
-	var stages = ["Опубліковано законодавчу пропозицію Єврокомісії",
-		"Призначено доповідача в комітеті Європарламенту",
-		"Проект підтримано в комітеті Європарламенту",
-		"Комітет подав проект на розгляд в Європарламенті",
-		"Дебати в Європарламенті",
-		"Голосування в Європарламенті",
-		"Добро від Ради ЄС після консультацій з Європарламентом",
-		"Законо підписано",
-		"Закон опубліковано"];
+	var stages = ["Профільний комітет ЄП обирає доповідача",
+		"Узгодження законопроекту в комітеті ЄП",
+		"Проект готується до подання на розгляд в Європарламенті",
+		"Розгляд законопроекту Європарламентом",
+		"Голосування за законопроект в Європарламенті",
+		"Узгодження закону з Радою ЄС",
+		"Підписання закону",
+		"Публікація закону"];
 
 	var serbia = ["15/07/2009", "14/09/2009", "19/10/2009", "27/10/2009",
 		"11/11/2009", "12/11/2009", "30/11/2009", "30/11/2009", "18/12/2009"];
 
 	var albania = ["27/05/2010", "15/06/2010", "28/09/2010", "30/09/2010",
 		"06/10/2010", "07/10/2010", "08/11/2010", "24/11/2010", "14/12/2010"];
+
+	var moldova = [];
 
 	var allCountries = [serbia, albania].map(function(country) {
 		return country.map(getTimeStampByDateString);
