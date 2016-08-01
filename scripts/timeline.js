@@ -23,6 +23,16 @@ $(function () {
 // 24/11/2010	End of procedure in Parliament
 // 14/12/2010	Final act published in Official Journal
 
+	var stages = ["Опубліковано законодавчу пропозицію Єврокомісії",
+		"Призначено доповідача в комітеті Європарламенту",
+		"Проект підтримано в комітеті Європарламенту",
+		"Комітет подав проект на розгляд в Європарламенті",
+		"Дебати в Європарламенті",
+		"Голосування в Європарламенті",
+		"Добро від Ради ЄС після консультацій з Європарламентом",
+		"Законо підписано",
+		"Закон опубліковано"];
+
 	var serbia = ["15/07/2009", "14/09/2009", "19/10/2009", "27/10/2009",
 		"11/11/2009", "12/11/2009", "30/11/2009", "30/11/2009", "18/12/2009"];
 
@@ -32,6 +42,14 @@ $(function () {
 	var allCountries = [serbia, albania].map(function(country) {
 		return country.map(getTimeStampByDateString);
 	});
+
+	var series = stages.map(function(stage, index) {
+		return {
+			name: stage,
+			data: generateSeriesData(index)
+		}
+	});
+	console.log(series);
 
 	function getTimeStampByDateString(dateString) {
 		var date = new Date();
@@ -45,8 +63,6 @@ $(function () {
 			return country.slice(index, index+2);
 		});
 	}
-
-	console.log(JSON.stringify(generateSeriesData(0)));
 
 	$('#container').highcharts({
 
@@ -102,14 +118,6 @@ $(function () {
 			enabled: false
 		},
 
-		series: [
-			{
-				name: 'Legislative proposal published',
-				data: generateSeriesData(0),
-			}, {
-				name: 'Committee referral announced in Parliament, 1st reading/single reading',
-				data: generateSeriesData(1)
-			}
-		]
+		series: series
 	});
 });
