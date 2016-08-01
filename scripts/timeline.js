@@ -11,23 +11,17 @@ $(function () {
 // 30/11/2009	End of procedure in Parliament
 // 18/12/2009	Final act published in Official Journal
 
-// 27/05/2010	Legislative proposal published	COM(2010)0256 Eur-Lex link	Summary
-1
-// 15/06/2010	Committee referral announced in Parliament, 1st reading/single reading
-2
-// 28/09/2010	Vote in committee, 1st reading/single reading	 	Summary
-3
-// 30/09/2010	Committee report tabled for plenary, 1st reading/single reading	A7-0256/2010
-4
-// 06/10/2010	Debate in Parliament
-5
-// 07/10/2010	Results of vote in Parliament
-// 07/10/2010	Decision by Parliament, 1st reading/single reading	T7-0349/2010	Summary
-6
-// 08/11/2010	Act adopted by Council after Parliament's 1st reading
-// 24/11/2010	Final act signed
-// 24/11/2010	End of procedure in Parliament
-// 14/12/2010	Final act published in Official Journal
+// 27/11/2013	Legislative proposal published	COM(2013)0853 Eur-Lex link	Summary
+// 13/01/2014	Committee referral announced in Parliament, 1st reading/single reading
+// 12/02/2014	Vote in committee, 1st reading/single reading
+// 13/02/2014	Committee report tabled for plenary, 1st reading/single reading	A7-0104/2014	Summary
+// 27/02/2014	Results of vote in Parliament
+// 27/02/2014	Debate in Parliament
+// 27/02/2014	Decision by Parliament, 1st reading/single reading	T7-0166/2014	Summary
+// 14/03/2014	Act adopted by Council after Parliament's 1st reading
+// 03/04/2014	Final act signed
+// 03/04/2014	End of procedure in Parliament
+// 08/04/2014	Final act published in Official Journal
 
 	var stages = ["Профільний комітет ЄП обирає доповідача",
 		"Узгодження законопроекту в комітеті ЄП",
@@ -44,9 +38,12 @@ $(function () {
 	var albania = ["27/05/2010", "15/06/2010", "28/09/2010", "30/09/2010",
 		"06/10/2010", "07/10/2010", "08/11/2010", "24/11/2010", "14/12/2010"];
 
-	var moldova = [];
+	var moldova = ["27/11/2013", "13/01/2014", "12/02/2014", "13/02/2014",
+		"27/02/2014", "27/02/2014", "14/03/2014", "03/04/2014", "08/04/2014"];
 
-	var allCountries = [serbia, albania].map(function(country) {
+	var georgia = ["09/03/2016", "11/04/2016"];
+
+	var allCountries = [serbia, albania, moldova, georgia].map(function(country) {
 		return country.map(getTimeStampByDateString);
 	});
 
@@ -56,7 +53,6 @@ $(function () {
 			data: generateSeriesData(index)
 		}
 	});
-	console.log(series);
 
 	function getTimeStampByDateString(dateString) {
 		var date = new Date();
@@ -67,8 +63,16 @@ $(function () {
 
 	function generateSeriesData(index) {
 		return allCountries.map(function(country) {
-			return country.slice(index, index+2);
+			var period = country.slice(index, index+2);
+			if (period.length === 1) {//the ongoing law process
+				period.push(new Date());
+			}
+			return period;
 		});
+	}
+
+	function printDate(date) {
+		return date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 	}
 
 	$('#container').highcharts({
@@ -88,8 +92,8 @@ $(function () {
 
 		xAxis: {
 			categories: [
-				"Сербія, Чорногорія, Македонія",
-				"Албанія, Боснія та Герцеговина",
+				"Сербія<br/>Чорногорія<br/>Македонія",
+				"Албанія<br/>Боснія та Герцеговина",
 				"Молдова",
 				"Грузія",
 				"Україна",
@@ -115,7 +119,7 @@ $(function () {
 					enabled: true,
 					formatter: function () {
 						var date = new Date(this.y);
-						return date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+						return printDate(date);
 					}
 				}
 			}
