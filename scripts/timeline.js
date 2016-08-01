@@ -43,7 +43,11 @@ $(function () {
 
 	var georgia = ["09/03/2016", "11/04/2016"];
 
-	var allCountries = [serbia, albania, moldova, georgia].map(function(country) {
+	var ukraine = ["20/04/2016", "28/04/2016"];
+
+	var kosovo = ["04/05/2016", "06/06/2016"];
+
+	var allCountries = [serbia, albania, moldova, georgia, ukraine, kosovo].map(function(country) {
 		return country.map(getTimeStampByDateString);
 	});
 
