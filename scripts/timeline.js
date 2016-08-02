@@ -84,6 +84,10 @@ $(function () {
 
 		yAxis: {
 			type: 'datetime',
+			dateTimeLabelFormats: {
+				month: '%m-%Y'
+			},
+			title: '',
 			minTickInterval: 31 * 24 * 36e5,
 		},
 
