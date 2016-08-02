@@ -58,7 +58,8 @@ $(function () {
 
 	Highcharts.setOptions({
 		lang: {
-			resetZoom: 'Відмінити масштабування'
+			resetZoom: 'Відмінити масштабування',
+			resetZoomTitle: 'Натисніть, щоб повернутись до немасштабованого вигляду'
 		}
 	});
 
