@@ -60,15 +60,18 @@ $(function () {
 
 		chart: {
 			type: 'columnrange',
+			zoomType: 'y',
+			panning: true,
+			panKey: 'shift',
 			inverted: true
 		},
 
 		title: {
-			text: 'Temperature variation by month'
+			text: 'Хронологія змін до директиви Єврокомісії 539/2001 2000/0030(CNS)'
 		},
 
 		subtitle: {
-			text: 'Observed in Vik i Sogn, Norway'
+			text: 'Для країн Західних Балкан та Східної Європи'
 		},
 
 		xAxis: {
@@ -93,6 +96,7 @@ $(function () {
 
 		tooltip: {
 			formatter: function() {
+				console.log(this.series);
 				return '<b>' + this.series.name + '</b>'
 			}
 		},
