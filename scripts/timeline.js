@@ -56,6 +56,12 @@ $(function () {
 		return date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 	}
 
+	Highcharts.setOptions({
+		lang: {
+			resetZoom: 'Відмінити масштабування'
+		}
+	});
+
 	$('#container').highcharts({
 
 		chart: {
