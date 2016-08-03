@@ -115,9 +115,10 @@ $(function () {
 			columnrange: {
 				stacking: 'normal',
 				dataLabels: {
+					align: 'left',
 					enabled: true,
 					formatter: function () {
-						var date = new Date(this.y);
+						var date = new Date(this.point.low);
 						return printDate(date);
 					}
 				}
