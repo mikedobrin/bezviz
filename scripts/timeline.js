@@ -103,8 +103,11 @@ $(function () {
 
 		tooltip: {
 			formatter: function() {
-				console.log(this.series);
-				return '<b>' + this.series.name + '</b>'
+				var result = '<b>' + this.series.name + '</b><br/>' +
+					"з " + printDate(new Date(this.point.low)) + " по " +
+					printDate(new Date(this.point.high)) + '<br/>' +
+					'Скільки днів: ' + Math.floor((this.point.high - this.point.low) / (1000 * 3600 * 24));
+				return result;
 			}
 		},
 
