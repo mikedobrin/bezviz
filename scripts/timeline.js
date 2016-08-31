@@ -131,4 +131,16 @@ $(function () {
 
 		series: series
 	});
+
+	//build now-stages html
+	var stagesContainer = $('.now-stages-container');
+	stages.forEach(function(stage, index) {
+		var step = $('<li></li>');
+		step.text(stage)
+		var isStageCompleted = typeof ukraine[index+1] !== 'undefined';
+		var isStageActive = index === ukraine.length - 1;
+		step.addClass(isStageCompleted ? 'bg-success' : '');
+		step.addClass(isStageActive ? 'bg-primary' : '');
+		stagesContainer.append(step);
+	});
 });

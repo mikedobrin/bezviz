@@ -17,6 +17,8 @@
 	<!-- Custom CSS -->
 	<link href="http://blackrockdigital.github.io/startbootstrap-scrolling-nav/css/scrolling-nav.css" rel="stylesheet">
 
+	<link href="stylesheets/main-styles.css" rel="stylesheet">
+
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -31,16 +33,15 @@
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
 	<!-- Navigation -->
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-default navbar-fixed-top page-logo" role="navigation">
 		<div class="container">
 			<div class="navbar-header page-scroll">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
+					<span class="sr-only">Навігація по сторінці</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,7 +52,7 @@
 						<a class="page-scroll" href="#page-top"></a>
 					</li>
 					<li>
-						<a class="page-scroll" href="#about">About</a>
+						<a class="page-scroll" href="#now">Поточний стан</a>
 					</li>
 					<li>
 						<a class="page-scroll" href="#chart-procedure">Як це відбувалося з іншими країнами</a>
@@ -71,20 +72,31 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Scrolling Nav</h1>
-					<p><strong>Usage Instructions:</strong> Make sure to include the <code>scrolling-nav.js</code>, <code>jquery.easing.min.js</code>, and <code>scrolling-nav.css</code> files. To make a link smooth scroll to another section on the page, give the link the <code>.page-scroll</code> class and set the link target to a corresponding ID on the page.</p>
-					<a class="btn btn-default page-scroll" href="#about">Click Me to Scroll Down!</a>
+					<h1>Про що цей сайт</h1>
+					<p>Якщо ви сюди зайшли, значить вам теж цікаво, коли ж ми нарешті зможемо їздити в країни Шенгенської угоди без віз.</p>
+					<p>Ми витратили трошки часу, щоб розібратися з цим питанням. Вся використана інформація взята з офіційних відкритих джерел, жодних пліток чи спекуляцій.</p>
+					<a class="btn btn-default page-scroll" href="#now">Переглянути поточний стан нашої заявки</a>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- About Section -->
-	<section id="about" class="about-section">
+	<section id="now" class="about-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>About Section</h1>
+					<h1>Поточний стан</h1>
+					<p>Для отримання безвізового режиму з ЄС законодавчій ініціативі Єврокомісії необхідно пройти наступні етапи в Європарламенті та в Раді ЄС:
+					<ul class="now-stages-container text-left list-unstyled">
+					</ul>
+					<h2>Пояснення</h2>
+					<dl class="text-left dl-horizontal">
+						<dt class="bg-success">Зелений</dt>
+						<dd>Пройдені етапи</dd>
+						<dt class="bg-primary">Синій</dt>
+						<dd>Етап, на якому знаходимося зараз</dd>
+					</dl>
 				</div>
 			</div>
 		</div>
