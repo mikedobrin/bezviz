@@ -18,11 +18,11 @@ $(function () {
 	var moldova = ["27/11/2013", "13/01/2014", "12/02/2014", "13/02/2014",
 		"27/02/2014", "27/02/2014", "14/03/2014", "03/04/2014", "08/04/2014"];
 
-	var georgia = ["09/03/2016", "11/04/2016"];
+	var georgia = ["09/03/2016", "11/04/2016", "05/09/2016", "09/09/2016"];
 
 	var ukraine = ["20/04/2016", "28/04/2016"];
 
-	var kosovo = ["04/05/2016", "06/06/2016"];
+	var kosovo = ["04/05/2016", "06/06/2016", "05/09/2016", "09/09/2016"];
 
 	var allCountries = [serbia, albania, moldova, georgia, ukraine, kosovo].map(function(country) {
 		return country.map(getTimeStampByDateString);
