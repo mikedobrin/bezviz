@@ -1,7 +1,13 @@
-.page-logo {
-	background-image: url('../images/logo.png');
-	background-repeat: no-repeat;
-	background-position: 25px 0px;
+@media screen and (min-width: 1550px) {
+	.page-logo {
+		background-image: url('../images/logo.png');
+		background-repeat: no-repeat;
+		background-position: 25px 0px;
+	}
+}
+
+.top-nav-collapse.page-logo {
+	background-image: none;
 }
 
 .now-stages-container li {
