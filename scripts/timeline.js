@@ -1,13 +1,30 @@
 $(function () {
 
-	var stages = ["Профільний комітет ЄП обирає доповідача",
-		"Узгодження законопроекту в комітеті ЄП",
-		"Проект готується до подання на розгляд в Європарламенті",
-		"Розгляд законопроекту Європарламентом",
-		"Голосування за законопроект в Європарламенті",
-		"Узгодження закону з Радою ЄС",
-		"Підписання закону",
-		"Публікація закону"];
+	var stages = [
+		{
+			name: "Профільний комітет ЄП обирає доповідача",
+		}, {
+			name: "Узгодження законопроекту в комітеті ЄП",
+			extraInfo: ['26/09/2016']
+		}, {
+			name: "Проект готується до подання на розгляд в Європарламенті",
+			extraInfo: 'Зазвичай завершується за декілька днів після узгодження законопроєкту в комітеті ЄП'
+		}, {
+			name: "Розгляд законопроекту Європарламентом",
+			extraInfo: ['3/10/2016', '4/10/2016', '5/10/2016', '6/10/2016', ' 24/10/2016', '25/10/2016', '26/10/2016', '27/10/2016']
+		}, {
+			name: "Голосування за законопроект в Європарламенті",
+			extraInfo: ['3/10/2016', '4/10/2016', '5/10/2016', '6/10/2016', ' 24/10/2016', '25/10/2016', '26/10/2016', '27/10/2016']
+		}, {
+			name: "Узгодження закону з Радою ЄС",
+			extraInfo: ['13/10/2016', '14/10/2016', '8/12/2016', '9/12/2016']
+		}, {
+			name: "Підписання закону",
+			extraInfo: 'Приблизно за тиждень після узгодження'
+		}, {
+			name: "Публікація закону",
+			extraInfo: 'Приблизно за тиждень після підписання'
+		}];
 
 	var serbia = ["15/07/2009", "14/09/2009", "19/10/2009", "27/10/2009",
 		"11/11/2009", "12/11/2009", "30/11/2009", "30/11/2009", "18/12/2009"];
@@ -30,7 +47,7 @@ $(function () {
 
 	var series = stages.map(function(stage, index) {
 		return {
-			name: stage,
+			name: stage.name,
 			data: generateSeriesData(index)
 		}
 	});
@@ -136,11 +153,35 @@ $(function () {
 	var stagesContainer = $('.now-stages-container');
 	stages.forEach(function(stage, index) {
 		var step = $('<li></li>');
-		step.text(stage)
+		step.text(stage.name)
 		var isStageCompleted = typeof ukraine[index+1] !== 'undefined';
 		var isStageActive = index === ukraine.length - 1;
+		if (isStageCompleted) {
+			step.prepend('<span class="glyphicon glyphicon-ok">&nbsp;</span>');
+		} else if (isStageActive) {
+			step.prepend('<span class="glyphicon glyphicon-play">&nbsp;</span>');
+		}
+		var extraInfo = stage.extraInfo;
+		if (extraInfo instanceof Array) {
+			step.append(generatePossibleDates(extraInfo));
+		} else if (extraInfo) {
+			step.append('<br><em>' + extraInfo + '</em>');
+		}
 		step.addClass(isStageCompleted ? 'bg-success' : '');
 		step.addClass(isStageActive ? 'bg-primary' : '');
 		stagesContainer.append(step);
 	});
+
+	function generatePossibleDates(dates) {
+		var timeStamps = dates.map(getTimeStampByDateString);
+		var datesList = $('<div></div>');
+		datesList.append('<small>Можлива дата завершення цього етапу: </small>')
+		timeStamps.forEach(function(timeStamp, index) {
+			if (index > 0) {
+				datesList.append("<em>, </em>");
+			}
+			datesList.append('<em><span class="glyphicon glyphicon-calendar"></span>' + printDate(new Date(timeStamp)) + '</em>');
+		});
+		return datesList;
+	}
 });
