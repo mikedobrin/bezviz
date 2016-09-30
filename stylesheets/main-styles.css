@@ -3,6 +3,7 @@ section {
 	padding-top: 150px;
 	text-align: center;
 	background: #FFFFFF;
+	color: #1F3140;
 }
 
 section:nth-child(odd) {
