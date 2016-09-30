@@ -1,3 +1,14 @@
+section {
+	min-height: 100%;
+	padding-top: 150px;
+	text-align: center;
+	background: #FFFFFF;
+}
+
+section:nth-child(odd) {
+	background: #EEEEEE;
+}
+
 .page-logo {
 	background-repeat: no-repeat;
 }
