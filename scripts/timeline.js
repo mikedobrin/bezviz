@@ -122,10 +122,12 @@ $(function () {
 
 		tooltip: {
 			formatter: function() {
+				var startDate = new Date(this.point.low);
+				var endDate = new Date(this.point.high);
 				var result = '<b>' + this.series.name + '</b><br/>' +
-					"з " + printDate(new Date(this.point.low)) + " по " +
-					printDate(new Date(this.point.high)) + '<br/>' +
-					'Скільки днів: ' + Math.floor((this.point.high - this.point.low) / (1000 * 3600 * 24));
+					"з " + printDate(startDate) + " по " +
+					printDate(endDate) + '<br/>' +
+					'Скільки днів: ' + getDateDifference(startDate, endDate);
 				return result;
 			}
 		},
@@ -158,10 +160,15 @@ $(function () {
 		step.text(stage.name)
 		var isStageCompleted = typeof ukraine[index+1] !== 'undefined';
 		var isStageActive = index === ukraine.length - 1;
+		var tookDays;
 		if (isStageCompleted) {
 			step.prepend('<span class="glyphicon glyphicon-ok">&nbsp;</span>');
+			tookDays = getDateDifference(ukraine[index], ukraine[index+1]);
+			step.append('<br><em>Тривало днів: ' + tookDays + '</em>');
 		} else if (isStageActive) {
 			step.prepend('<span class="glyphicon glyphicon-play">&nbsp;</span>');
+			tookDays = getDateDifference(ukraine[index], new Date());
+			step.append('<br><em>Триває днів: ' + tookDays + '</em>');
 		}
 		var extraInfo = stage.extraInfo;
 		if (extraInfo instanceof Array) {
@@ -173,6 +180,13 @@ $(function () {
 		step.addClass(isStageActive ? 'bg-primary' : '');
 		stagesContainer.append(step);
 	});
+
+	function getDateDifference(startValue, endValue) {
+		var startTimeStamp = startValue.getTime ? startValue.getTime() : getTimeStampByDateString(startValue);
+		var endTimeStamp = endValue.getTime ? endValue.getTime() : getTimeStampByDateString(endValue);
+		var timeDifference = endTimeStamp - startTimeStamp;
+		return Math.floor(timeDifference / (1000 * 3600 * 24));
+	}
 
 	function generatePossibleDates(dates) {
 		var timeStamps = dates.map(getTimeStampByDateString);
