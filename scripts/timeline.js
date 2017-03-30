@@ -186,7 +186,7 @@ $(function () {
 		var startTimeStamp = startValue.getTime ? startValue.getTime() : getTimeStampByDateString(startValue);
 		var endTimeStamp = endValue.getTime ? endValue.getTime() : getTimeStampByDateString(endValue);
 		var timeDifference = endTimeStamp - startTimeStamp;
-		return Math.floor(timeDifference / (1000 * 3600 * 24));
+		return Math.round(timeDifference / (1000 * 3600 * 24));
 	}
 
 	function generatePossibleDates(dates) {
